@@ -1,4 +1,13 @@
 {
-    "name": "Crossmint Challenge",
-    "type": "module"
+    "name": "crossmint-challenge",
+    "version": "1.0.0",
+    "dependencies": {
+        "@types/node": "^20.10.4",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    },
+    "scripts": {
+        "phase1": "ts-node ./resolutions/phase1.ts",
+        "phase2": "ts-node ./resolutions/phase2.ts"
+    }
 }

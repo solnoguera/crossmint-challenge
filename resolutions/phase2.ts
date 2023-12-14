@@ -1,6 +1,6 @@
 import { createPolyanet, goalMap, createCometh, createSoloon, deleteCometh, deleteSoloon, deletePolyanet } from "../services";
 
-const createCrossmintLogo = async () : Promise<void> => {
+const createCrossmintLogo = async () : Promise<boolean> => {
     try {
         const megaverse: Array<Array<string>> = await goalMap();
         const megaverseSize: number = megaverse.length;
@@ -32,10 +32,17 @@ const createCrossmintLogo = async () : Promise<void> => {
                 }
             }
         }
-    } catch (error) {
-        console.log("Sorry! There was an error: ", error?.message)
+        return true;
+    } catch (error: any) {
+        console.log("Sorry! There was an error: ", error?.message ?? "Not specified")
+        return false;
     }
 }
 
+const start = async () : Promise<void> => {
+    console.log("Started to create the Crossmint Logo...");
+    const resolved = await createCrossmintLogo();
+    console.log(resolved ? "LOGO CREATED SUCCESSFULY!" : "Please try again!");
+}
 
-createCrossmintLogo();
+start();

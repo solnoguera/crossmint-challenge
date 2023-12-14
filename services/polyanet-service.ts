@@ -1,4 +1,5 @@
 import { CANDIDATE_ID, endpoints } from "../utils/constants";
+import { Position } from "../utils/models";
 
 /**
  * @param { {row: number, column: number} } position 
