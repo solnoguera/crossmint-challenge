@@ -1,32 +1,41 @@
-import { createPolyanet, deletePolyanet } from "./service.js";
+import { createPolyanet, goalMap, createCometh, createSoloon, deleteCometh, deleteSoloon, deletePolyanet } from "./service.js";
 
-const createPolyanetCross = async (gridSize) => {
+const createCrossmintLogo = async () => {
     try {
-        const isEven = gridSize % 2 === 0;
-        if(isEven) throw Error("A simetrical cross can not be created with an even number. It must be odd.")
+        const megaverse = await goalMap();
+        const megaverseSize = megaverse.length;
 
-        for (let e = 0; e < gridSize; e++) {
-            for (let h = 0; h < gridSize; h++) {
-                if ( e == h && e !== 0 && e !== 1 && e !== gridSize - 1 && e !== gridSize - 2) {
-                    const newPolyanetA = { row: e, column: h };
-                    const newPolyanetB = { row: e, column: gridSize - h - 1 };
-                    
-                    // I wait 2 seconds between each pair of request because without the setTimeOut the API will return 'Too Many Requests. Try again later.'
-                    (async () => {
-                        await createPolyanet(newPolyanetA);
-                        await createPolyanet(newPolyanetB);
-                      })();
+        for (let e = 0; e < megaverseSize; e++) {
+            for (let h = 0; h < megaverseSize; h++) {
+
+                const element = megaverse[e][h];
+
+                const isPolyanet = element.includes("POLYANET");
+                const isCometh = element.includes("COMETH");
+                const isSoloon = element.includes("SOLOON");
+
+                if(isPolyanet){
+                    const res = await createPolyanet({ row: e, column: h });
                     await new Promise((resolve) => setTimeout(resolve, 2000));
+                }
 
-                    console.log({ newPolyanet: newPolyanetA })
-                    console.log({ newPolyanet2: newPolyanetB })
+                if(isCometh){
+                    const comethSeparated = element.split("_");
+                    const res2 = await createCometh({ row: e, column: h }, comethSeparated[0].toLowerCase());
+                    await new Promise((resolve) => setTimeout(resolve, 2000));
+                }
+
+                if(isSoloon){
+                    const soloonSeparated = element.split("_");
+                    const res3 = await createSoloon({ row: e, column: h }, soloonSeparated[0].toLowerCase());
+                    await new Promise((resolve) => setTimeout(resolve, 2000));
                 }
             }
         }
     } catch (error) {
-        console.log("An error ocurred: ", error?.message)
+        console.log("Sorry! There was an error: ", error?.message)
     }
 }
 
 
-createPolyanetCross(11);
+createCrossmintLogo();
