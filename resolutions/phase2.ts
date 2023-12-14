@@ -1,4 +1,4 @@
-import { createPolyanet, goalMap, createCometh, createSoloon, deleteCometh, deleteSoloon, deletePolyanet } from "../utils/service.js";
+import { createPolyanet, goalMap, createCometh, createSoloon, deleteCometh, deleteSoloon, deletePolyanet } from "../services";
 
 const createCrossmintLogo = async () : Promise<void> => {
     try {

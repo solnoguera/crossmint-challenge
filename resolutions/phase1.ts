@@ -1,4 +1,4 @@
-import { createPolyanet, deletePolyanet } from "../utils/service.js";
+import { createPolyanet, deletePolyanet } from "../services";
 /**
  * 
  * @param { number } gridSize 
