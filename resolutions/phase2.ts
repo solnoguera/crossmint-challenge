@@ -1,5 +1,8 @@
 import { createPolyanet, goalMap, createCometh, createSoloon, deleteCometh, deleteSoloon, deletePolyanet } from "../services";
 
+// This was the cleanest and easiest way to recreate the logo. 
+// There was no logic I could follow like in phase 1, so I built this clean and very understandable solution!
+
 const createCrossmintLogo = async () : Promise<boolean> => {
     try {
         const megaverse: Array<Array<string>> = await goalMap();
